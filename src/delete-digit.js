@@ -34,3 +34,28 @@ return result;
 module.exports = {
   deleteDigit
 };
+
+
+// function deleteDigit(n) {
+//   const str = String(n);
+//   let variants = [];
+
+//   for(let i = 0; i < str.length; i++) {
+//     variants.push(Number(str.slice(0, i) + str.slice(i + 1)))
+//   }
+
+//   return Math.max(...variants);
+// }
+
+
+// function deleteDigit(n) {
+//   n = n.toString();
+//   let max = 0;
+//   for (i=0;i<n.length;i++) {
+//     tempN = [...n];
+//     tempN.splice(i,1);
+//     tempN = Number(tempN.join(""))
+//     if (max<tempN) max = tempN;
+//   }
+//   return max;
+// }
