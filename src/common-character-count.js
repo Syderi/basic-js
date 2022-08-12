@@ -24,7 +24,6 @@ return rezult;
 }
 
 
-
 module.exports = {
   getCommonCharacterCount
 };

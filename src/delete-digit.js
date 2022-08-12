@@ -12,7 +12,6 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function deleteDigit(num) {
-  // throw new NotImplementedError('Not implemented');
   let result = 0;
   let num_digits = [];
 while (num) {

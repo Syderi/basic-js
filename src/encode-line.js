@@ -11,9 +11,6 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 
-// let str = 'aabbbc'
-// encodeLine(str)
-
 
 function encodeLine(str) {
   const array = [];
