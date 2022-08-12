@@ -11,6 +11,10 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 
+// let str = 'aabbbc'
+// encodeLine(str)
+
+
 function encodeLine(str) {
   const array = [];
   const strArray = str.split('');
@@ -32,6 +36,14 @@ function encodeLine(str) {
 return array.reverse().join('');
 }
 
+// function encodeLine(str) {
+//   console.log(str.match(/(.)\1*/g));
+//   return (str.match(/(.)\1*/g) ?? []).map(s=>s.length===1 ? s : s.length+s[0]).join("");
+// }
+
+
 module.exports = {
   encodeLine
 };
+
+
