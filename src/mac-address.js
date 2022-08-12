@@ -15,8 +15,8 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 
-let n = 'not a MAC-48 address'
-isMAC48Address(n)
+// let n = 'not a MAC-48 address'
+// isMAC48Address(n)
 
 function isMAC48Address(n) {
   // throw new NotImplementedError('Not implemented');

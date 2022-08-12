@@ -49,8 +49,6 @@ const { NotImplementedError } = require('../extensions/index.js');
 //  createDreamTeam(aa)
 
 function createDreamTeam(members) {
-  // throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
   if (!Array.isArray(members)) return false;
   let result = '';
   let newArray = members.filter(item => typeof item === 'string').map((tech) => tech.replaceAll(" ", "").toUpperCase()).sort();
