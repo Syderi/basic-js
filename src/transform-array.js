@@ -45,24 +45,29 @@ function transform(arr) {
 
   for(let index = 0; index < arr.length; index++) {
     switch (arr[index]) {
+
      case '--discard-prev':
        if(result.length > 0 && arr[index - 2] !== '--discard-next') {
          result.pop();
        }
        break;
+
           case '--discard-next':
             index++;
             break;
+
                 case '--double-next':
                   if(arr[index + 1]) {
                     result.push(arr[index + 1]);
                   }
                   break;
+
                       case '--double-prev':
                         if(result.length > 0 && arr[index - 2] !== '--discard-next') {
                           result.push(arr[index - 1]);
                         }
                         break;
+                        
       default:
        result.push(arr[index]);
    }
