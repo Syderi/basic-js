@@ -37,12 +37,35 @@ const { NotImplementedError } = require('../extensions/index.js');
 
 
 function transform(arr) {
-  throw new NotImplementedError('Not implemented');
-  // let result = [];
+  // throw new NotImplementedError('Not implemented');
+  let result = [];
 
-  // if (!Array.isArray(arr)) {
-  //   throw new Error('\'arr\' parameter must be an instance of the Array!')
-  // }
+  if (!Array.isArray(arr)) {
+    throw new Error('\'arr\' parameter must be an instance of the Array!')
+  }
+
+arr.forEach((element,index) => {
+  (arr[index - 1] === "--discard-next") && result.push('[]')
+  (element === "--discard-prev")        && result.pop();
+  (arr[index - 1] === "--double-next")  && result.push(element, element);
+  (element === "--double-prev")         && result.push(result[result.length-1] ?? []);
+  (element !== "--double-next" && element !== "--discard-next") && result.push(element);
+});
+
+  // arr.map((element, index) => {
+  //   if (arr[index - 1] === "--discard-next") {
+  //     result.push('[]');
+  //   } else if (element === "--discard-prev") {
+  //     result.pop();
+  //   } else if (arr[index - 1] === "--double-next") {
+  //     result.push(element, element);
+  //   } else if (element === "--double-prev") {
+  //     result.push(result.at(-1) ?? []);
+  //   } else if (element !== "--double-next" && element !== "--discard-next")
+  //   result.push(element);
+  // });
+  return result.flat()
+
 
   // for (let index = 0; index < arr.length; index++) {
   //   switch (arr[index]) {
