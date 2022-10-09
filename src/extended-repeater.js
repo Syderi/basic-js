@@ -33,7 +33,7 @@ function repeater(str, options) {
   const additionSeparator = options.hasOwnProperty('additionSeparator') ? String(options.additionSeparator) : '|';
 
   let finalAddition = new Array(additionRepeatTimes).fill(addition).join(additionSeparator);
-  return new Array(repeatTimes).fill(`${str}${finalAddition}`).join(separator)
+  return new Array(repeatTimes).fill(str+finalAddition).join(separator)
 
 }
 

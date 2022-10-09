@@ -52,11 +52,11 @@ function createDreamTeam(members) {
   if (!Array.isArray(members)) return false;
   let result = '';
   let newArray = members.filter(item => typeof item === 'string').map((tech) => tech.replaceAll(" ", "").toUpperCase()).sort();
-  console.log('newArray',newArray);
+  // console.log('newArray',newArray);
   newArray.forEach(element => {
     result = result + element.slice(0,1);
 
-    console.log('result',result);
+    // console.log('result',result);
   });
  return result;
 }

@@ -37,43 +37,44 @@ const { NotImplementedError } = require('../extensions/index.js');
 
 
 function transform(arr) {
-  let result = [];
+  throw new NotImplementedError('Not implemented');
+  // let result = [];
 
-  if(!Array.isArray(arr)) {
-    throw new Error('\'arr\' parameter must be an instance of the Array!')
-  }
+  // if (!Array.isArray(arr)) {
+  //   throw new Error('\'arr\' parameter must be an instance of the Array!')
+  // }
 
-  for(let index = 0; index < arr.length; index++) {
-    switch (arr[index]) {
+  // for (let index = 0; index < arr.length; index++) {
+  //   switch (arr[index]) {
 
-     case '--discard-prev':
-       if(result.length > 0 && arr[index - 2] !== '--discard-next') {
-         result.pop();
-       }
-       break;
+  //     case '--discard-prev':
+  //       if (result.length > 0 && arr[index - 2] !== '--discard-next') {
+  //         result.pop();
+  //       }
+  //       break;
 
-          case '--discard-next':
-            index++;
-            break;
+  //     case '--discard-next':
+  //       index++;
+  //       break;
 
-                case '--double-next':
-                  if(arr[index + 1]) {
-                    result.push(arr[index + 1]);
-                  }
-                  break;
+  //     case '--double-next':
+  //       if (arr[index + 1]) {
+  //         result.push(arr[index + 1]);
+  //       }
+  //       break;
 
-                      case '--double-prev':
-                        if(result.length > 0 && arr[index - 2] !== '--discard-next') {
-                          result.push(arr[index - 1]);
-                        }
-                        break;
-                        
-      default:
-       result.push(arr[index]);
-   }
-  }
+  //     case '--double-prev':
+  //       if (result.length > 0 && arr[index - 2] !== '--discard-next') {
+  //         result.push(arr[index - 1]);
+  //       }
+  //       break;
 
-  return result;
+  //     default:
+  //       result.push(arr[index]);
+  //   }
+  // }
+
+  // return result;
 }
 
 
@@ -82,7 +83,7 @@ function transform(arr) {
 //   if(!Array.isArray(arr)) {
 //     throw new Error('\'arr\' parameter must be an instance of the Array!')
 //   }
-  
+
 //   // arr.forEach((element) => { 
 //   //   if (typeof element === 'object')  {
 //   //     throw new Error('\'arr\' parameter must be an instance of the Array!')
