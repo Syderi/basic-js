@@ -23,7 +23,7 @@ const { NotImplementedError } = require('../extensions/index.js');
 //   output: [1, 2, 3, 1337, 1337, 1337, 4, 5]
 // },
 // discardDiscarded: {
-//   input: [1, 2, 3, '--discard-next', 1337, '--discard-prev', 4, 5],
+//   input:,
 //   output: [1, 2, 3, 4, 5]
 // },
 // discardDoubled: {
@@ -34,118 +34,42 @@ const { NotImplementedError } = require('../extensions/index.js');
 
 // let arr = [1, 2, 3, '--double-next', 1337, '--double-prev', 4, 5]
 // transform(arr)
-
+// let arr =  [1, 2, 3, '--discard-next', 1337, '--discard-prev', 4, 5]
+// transform(arr)
 
 function transform(arr) {
-  // throw new NotImplementedError('Not implemented');
-  let result = [];
-
-  if (!Array.isArray(arr)) {
+  if (!Array.isArray(arr))
     throw new Error('\'arr\' parameter must be an instance of the Array!')
-  }
-
-arr.forEach((element,index) => {
-  (arr[index - 1] === "--discard-next") && result.push('[]')
-  (element === "--discard-prev")        && result.pop();
-  (arr[index - 1] === "--double-next")  && result.push(element, element);
-  (element === "--double-prev")         && result.push(result[result.length-1] ?? []);
-  (element !== "--double-next" && element !== "--discard-next") && result.push(element);
-});
-
-  // arr.map((element, index) => {
-  //   if (arr[index - 1] === "--discard-next") {
-  //     result.push('[]');
-  //   } else if (element === "--discard-prev") {
-  //     result.pop();
-  //   } else if (arr[index - 1] === "--double-next") {
-  //     result.push(element, element);
-  //   } else if (element === "--double-prev") {
-  //     result.push(result.at(-1) ?? []);
-  //   } else if (element !== "--double-next" && element !== "--discard-next")
-  //   result.push(element);
-  // });
-  return result.flat()
+ let result = [];
 
 
-  // for (let index = 0; index < arr.length; index++) {
-  //   switch (arr[index]) {
+  arr.forEach((el,index,arr) => {
+    if (arr[index - 1] === "--discard-next") {
+      result.push([]);
+      console.log('1=',result)
+    } else
+    
+    if (el === "--discard-prev") {
+      result.pop();
+      console.log('2=',result)
+    } else if (arr[index - 1] === "--double-next") {
+      result.push(el, el);
+      console.log('3=',result)
+    } else if (el === "--double-prev") {
+      result.push((result[result.length-1]) ? (result[result.length-1]) :[]);
+      console.log('4=',result)
+    } else
+    
+    if (el !== "--double-next" && el !== "--discard-next")
+      result.push(el);
+      console.log('5=',result)
+  });
 
-  //     case '--discard-prev':
-  //       if (result.length > 0 && arr[index - 2] !== '--discard-next') {
-  //         result.pop();
-  //       }
-  //       break;
 
-  //     case '--discard-next':
-  //       index++;
-  //       break;
+  // console.log('finish=',result)
 
-  //     case '--double-next':
-  //       if (arr[index + 1]) {
-  //         result.push(arr[index + 1]);
-  //       }
-  //       break;
-
-  //     case '--double-prev':
-  //       if (result.length > 0 && arr[index - 2] !== '--discard-next') {
-  //         result.push(arr[index - 1]);
-  //       }
-  //       break;
-
-  //     default:
-  //       result.push(arr[index]);
-  //   }
-  // }
-
-  // return result;
+  return result.flat(Infinity)
 }
-
-
-// function transform(arr) {
-
-//   if(!Array.isArray(arr)) {
-//     throw new Error('\'arr\' parameter must be an instance of the Array!')
-//   }
-
-//   // arr.forEach((element) => { 
-//   //   if (typeof element === 'object')  {
-//   //     throw new Error('\'arr\' parameter must be an instance of the Array!')
-//   //   }
-//   // });
-//   arr.forEach((element, index) => { 
-//     if (element === '--discard-next' && index === arr.length-1)  arr.splice(index,1);
-//   });
-//   arr.forEach((element, index) => { 
-//     if (element === '--double-next' && index === arr.length-1)  arr.splice(index,1);
-//   });
-
-//   arr.forEach((element, index) => { 
-//     if (element === '--discard-prev' && index === 0)  arr.splice(0,1);
-//   });
-//   arr.forEach((element, index) => { 
-//     if (element === '--double-prev' && index === 0)  arr.splice(0,1);
-//   });
-
-//   arr.forEach((element, index) => {
-//     if (element === '--double-next') arr[index] = arr[index + 1];
-//     if (element === '--double-prev') arr[index] = arr[index - 1];
-//   });
-
-//   arr.forEach((element, index) => {
-//     if (element === '--discard-next' && (arr[index + 2] === '--discard-prev' || '--double-prev')) arr.splice(index,3);
-//   });
-
-//   arr.forEach((element, index) => {
-//     if (element === '--discard-next') arr.splice(index,2);
-//   });
-//   arr.forEach((element, index) => {
-//     if (element === '--discard-prev') arr.splice([index-1],2);
-//   });
-
-//   console.log(arr)
-
-// return arr;
-// }
 
 module.exports = {
   transform
